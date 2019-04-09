@@ -1,0 +1,13 @@
+krun: run command within temperature window
+    
+The command:
+  krun 80 60 make test
+will run the subcommand 'make test' while monitoring CPU temperatures;
+if at any point the temperature goes above 80C, the subcommand (process
+group) will be suspended until it falls below 60C, then allowed to resume.
+
+^C will be propagated to the subcommand before krun exits, but only when
+the subcommand is not in the suspended state.
+
+I'm not sure how portable the sensing code is, please test in your own
+environment before relying on it.
